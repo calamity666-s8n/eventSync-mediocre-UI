@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!-- bs icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+    <title>Eventsnode</title>
+</head>
+
+<body>
+    <section class="navbar">
+        <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 fixed-top">
+            <a href="#" class="navbar-brand ">EventsNode.js</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navLinks">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="" class="nav-link">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">TICKETS</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    <div class="container">
+        <h1 class="mb-4">EventsNode</h1>
+        <a href="/events/new" class="btn btn-success ">Organize Event <i  class="bi bi-bullseye small"></i></a>
+
+        <%events.forEach(events => { %>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <%=events.title%>
+                    </h4>
+                    <div class="card-subtitle text-muted mb-2 ">
+                        <%=events.createdAt.toLocaleDateString()%>
+                    </div>
+                    <div class="card-text mb-2">
+                        <%= events.description%>
+                    </div>
+                    <a href="events/<%=events.slug %>" class="btn btn-outline-primary">Read more...</a>
+                    <form action="/events/<%=events.id%>?_method=DELETE" method="POST" class="d-inline">
+                        <button type="submit" class="btn btn-danger">delete</button></form>
+                </div>
+
+            </div>
+            <% }) %>
+    </div>
+
+</body>
+
+</html>
